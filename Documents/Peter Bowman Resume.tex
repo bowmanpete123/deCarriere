@@ -40,6 +40,7 @@
 % ----------
 \usepackage{multicol}
 \usepackage{multirow}
+\usepackage{environ}
 % ----------
 %extended aligning of tabular cells
 % ----------
@@ -183,22 +184,18 @@
   }
   \vspace{-2pt}
 }
-% Double Column
-\newcommand{\cveventdualcolumn}[4]
-{
-  \begin{tabular*}{1\textwidth}{p{13.6cm}  x{3.9cm}}
-    \mbox{\mystrut \hspace{87pt}\textit{#1}}\\
-  \end{tabular*}
-
-  \vspace{-8pt}
-  \textcolor{rulecol}{\hrule}
-  \vspace{6pt}
-
-  \foreach \desc in {#4}{
-    \desc\
-  }
-}
+% CV Award 
 % ----------
+\newcommand{\cvaward}[4]{%
+  \begin{minipage}[t]{\linewidth}
+    \centering
+    \vspace{6pt}
+    \textbf{\underline{#2}}\par\vspace{3pt}
+    {\small #1 --- \textit{#3}}\par\vspace{4pt}
+    {\small #4}\par
+    \vspace{12pt}
+  \end{minipage}%
+}
 
 % CV Event Meta
 % ----------
@@ -292,37 +289,36 @@
 % ----------
 % Snapchat
 % ----------
-\cvevent{Jul 2025 -- Present}{Senior Python Engineer}{Snap}{Social Media}
-{ {Developed resilient Python-based ETL pipelines orchestrated with
-    Airflow, centralising production data into BigQuery and shrinking
-  reporting latency by 60\%, unlocking near real-time visibility},
+\cvevent{Jul 2025 -- Present}{Senior Data Engineer}{Snap}{Social Media}
+{ {Developed a fail-safe auto-archiving ETL network to automate KPI
+    tracking for chip factories in multiple timezones with Airflow,
+  Gemini \& Big Query, saving multiple FTEs of software engineering budget},
   {Automated data validation and pipeline monitoring scripts in
     Python, cutting manual quality checks by 50\% and reducing error
   resolution time across distributed teams by hours},
-  {Collaborated with international stakeholders across multiple
-    timezones to align product innovation decisions,  and stakeholder reporting
-    by  ensuring adoption of Looker Studio dashboards to accelerate
-cross-team prototyping}}
-{Python, Airflow, GCP(GCS, BigQuery, Looker Studio)}{Contract}
-
+  {Led junior engineers to DWE in order to automatically track OEE
+    performance for machines around the globe allowing centralised
+  real-time targeted efficiency gains for the Spectacles Fintech Portfolio}
+  \vspace{0pt}
+}{Python, Airflow, GCP(GCS, BigQuery, Looker Studio), Gemini}{Contract}
 % ----------
 % BBQ Banger Summer
 % ----------
-\cvevent{Mar 2026 - Present}{Personal Project}{ Banger Summer
-Challenge}{}{
-  {Engineered a real-time data ingestion pipeline using Python and
-    OpenCV DNN to automate object detection from social communication
-    streams, achieving 10000\% cultural engagement in British Summer
-  for Expat Australians and New Zealanders},
-  {Architected \& Maintained a containerized full-stack platform
-    (leveraging IAC principles) with a custom 'Linked Device' bridge to
-    synchronize high-volume messaging data with a persistent analytical
-  backend, completely cutting out manual processing},
-  {Developed an interactive dashboarding and provisioned competitive
-    analytical featuring to inspire a comradery and sportsmanship
-whilst attaining a collective mission}}{Python (FastAPI, OpenCV),
-  Node.js, Docker, Terraform, AWS,
-PostgreSQL, Streamlit}{}
+% \cvevent{Mar 2026 - Present}{Personal Project}{ Banger Summer
+% Challenge}{}{
+%   {Engineered a real-time data ingestion pipeline using Python and
+%     OpenCV DNN to automate object detection from social communication
+%     streams, achieving 10000\% cultural engagement in British Summer
+%   for Expat Australians and New Zealanders},
+%   {Architected \& Maintained a containerized full-stack platform
+%     (leveraging IAC principles) with a custom 'Linked Device' bridge to
+%     synchronize high-volume messaging data with a persistent analytical
+%   backend, completely cutting out manual processing},
+%   {Developed an interactive dashboarding and provisioned competitive
+%     analytical featuring to inspire a comradery and sportsmanship
+% whilst attaining a collective mission}}{Python (FastAPI, OpenCV),
+%   Node.js, Docker, Terraform, AWS,
+% PostgreSQL, Streamlit}{}
 % ----------
 % Flawless
 % ----------
@@ -337,7 +333,7 @@ PostgreSQL, Streamlit}{}
     Slack. Boosting efficiency by 25\% while enabling deeper tech
 integrations that foster reduce incident response and repair by hours}}
 {Python, Pytest, Temporal.io, Terraform, Github Actions, AWS}{Contract}
-
+\vspace{-3pt}
 % ----------
 % Lantern
 % ----------
@@ -353,7 +349,6 @@ Private Equity}
     builds and designing a maintainable testing standard for data
 framework quality for the wider data engineering team.} }{ Python,
 Docker, PostgresQL, dbt, Databricks}{}
-\pagebreak
 % ----------
 % Spend Network
 % ----------
@@ -375,6 +370,7 @@ operational responsibility.}}{Python (Pytest, Pyspark, Pandas, smtp),
   SQL, AWS (Athena, Glue,
 Quicksight, Glacier, Code Build, IAMS, ECR), Docker, Airflow}{Contract}
 
+\pagebreak
 % ----------
 % PIK-POK
 % ----------
@@ -416,8 +412,8 @@ Banking and Financial Sector}
   saving hundreds of man hours in data collection costs.}
 }
 % Tech
-{Python (FastAPI, Pandas, Pytest, Locust, SQAlchemy, Poetry), AWS
-(ECR, API Gateway), Hadoop, Scala, Spark, Hive, Postgres, Informatica}{}
+{Python (FastAPI, Pandas, Pytest, SQAlchemy), AWS
+(ECR, API Gateway), Hadoop, Spark, Postgres}{}
 
 % Heineken
 \cvevent{Jan 2019 - Dec 2019}{Data and Digital
@@ -434,42 +430,49 @@ Specialist}{Heineken }{ FMCG Beverages}
   {Used PowerBi to create the data warehouses visualisation layer of
     Heineken NZ Supply Chain, reducing company FTEs by 3.0.
   }
-}
-{Python, SQL, Power BI, Javascript (NodeJs, VueJs), Progressive Web
+}{Python, SQL, Power BI, Javascript (NodeJs, VueJs), Progressive Web
 Applications, Microsoft Power Apps}{}
 
 \vspace{-6pt}
 % ----------
 % Assurity
 % ----------
-% \cvevent{Jan 2016 - Jan 2018}{Test Engineering Consultant}{Assurity
-% Consulting }{ Gov Tech}
-% % Description
-% {
-%   {Worked with the Multiple Government departments on business
-%     transformation projects, facilitated integration with new partners,
-%     and improved the accessibility of government services. Bolstered
-%     the security and dependability of our government software while
-%     adeptly communicating trade-offs to various internal \& external
-%   stakeholders.},
-%   {Collaborated with the entire project team shape system
-%     architecture and feature design, and ensured quality of new
-%   functionalities in a continual and iterative fashion.}
-% }
-% % Tech
-% { Selenium, Webdriver, Junit, Java, Maven, SQL, Oracle SQL, Jenkins,
-% Cucumber, Groovy}
+\cvevent{Jan 2016 - Jan 2018}{Test Engineer}{Assurity
+Consulting}{Consulting}{{Worked with the Multiple Government departments on business
+    transformation projects, facilitated integration with new partners,
+    and improved the accessibility of government services. Bolstered
+    the security and dependability of our government software while
+    adeptly communicating trade-offs to various internal \& external
+  stakeholders.},
+  {Collaborated with the entire project team shape system
+    architecture and feature design, and ensured quality of new
+functionalities in a continual and iterative fashion.}}{Selenium,
+  Webdriver, Junit, Java, Maven, SQL, Oracle SQL, Jenkins,
+Cucumber, Groovy}{}
 % ----------
 % Education
 % ----------
-\cvsection{Education \& Awards}
-\cveventeducation{Dec 2018}{Grad Diploma}{Toi Ohomai
-Institute of Technology}{- Software Engineering}
-\cveventeducation{Dec 2015}{Bachelor of Arts}{Victoria University of
-Wellington}{- Economics, Min. English Lit.}
-\cveventeducation{Mar 2016}{ISTQB Foundation Level}{International Software
-Testing Board}{- Test Engineering}
-\cveventeducation{Dec 2010}{Diploma}{NZ Speech \& Drama Board}{- Drama Teaching}
+% Layout
+\NewEnviron{sectioneducation}[1]{%
+  \cvsection{#1}
+  \setlength{\multicolsep}{0pt}
+  \setlength{\columnsep}{18pt} % Your preferred gap size
+  \begin{multicols}{2}
+    \BODY
+  \end{multicols}
+}
+
+
+\begin{sectioneducation}{Education \& Awards}
+% Column 1
+\cvaward{Graduate Diploma}{Waikato University}{Software Engineering}{2018}
+\cvaward{Silver Award}{Duke Of Edinburgh}{Community Service}{2010}
+\cvaward{Foundation Level Certificate}{International Software Testing Board}{Test Engineering}{2016}
+% Column 2
+\cvaward{Bachelor Of Arts}{Victoria University of Wellington}{Economics, English Literature}{2015}
+\cvaward{NZ Young Achievers Award}{Governor-General of New Zealand}{Mahi Aroha}{2010}
+\cvaward{Teaching Diploma}{NZ Speech \& Drama Board}{Dramatic Arts - Distinction}{2010}
+\end{sectioneducation}
 % ----------
 
 % Document End
